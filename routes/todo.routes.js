@@ -5,12 +5,13 @@ import {
   deleteTask,
   createTask,
 } from "../controllers/todo.controller.js";
+import { authenticator } from "../middlewares/authenticator.js";
 
 const router = express.Router();
 
-router.post("/create", createTask);
-router.get("/bring", bringAll);
-router.delete("/delete/:id", deleteTask);
-router.put("/status/:id", isCompleted);
+router.post("/create", authenticator, createTask);
+router.get("/bring", authenticator, bringAll);
+router.delete("/delete/:id", authenticator, deleteTask);
+router.put("/status/:id", authenticator, isCompleted);
 
 export default router;

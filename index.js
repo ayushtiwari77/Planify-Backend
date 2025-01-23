@@ -4,6 +4,7 @@ import authRouter from "./routes/auth.routes.js";
 import todoRouter from "./routes/todo.routes.js";
 
 import connectToDatabase from "./lib/database.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -13,6 +14,7 @@ dotenv.config();
 const port = process.env.PORT || 5000;
 
 //using middleware
+app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api/todo", todoRouter);
