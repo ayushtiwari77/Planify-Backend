@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import authRouter from "./routes/auth.routes.js";
 import todoRouter from "./routes/todo.routes.js";
 
@@ -14,6 +15,13 @@ dotenv.config();
 const port = process.env.PORT || 5000;
 
 //using middleware
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRouter);
