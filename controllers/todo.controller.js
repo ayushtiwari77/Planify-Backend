@@ -39,11 +39,10 @@ export const bringAll = async (req, res) => {
 export const deleteTask = async (req, res) => {
   const { id: taskId } = req.params;
 
-  await todoModel.findByIdAndDelete(taskId);
-
-  return res.status(200).json({ message: "task deleted successfully" });
-
   try {
+    await todoModel.findByIdAndDelete(taskId);
+
+    return res.status(200).json({ message: "task deleted successfully" });
   } catch (error) {
     console.log("error is in read delete task todo controller:", error.message);
     res.status(500).json({ message: "Internal Server Error" });

@@ -6,6 +6,7 @@ import todoRouter from "./routes/todo.routes.js";
 
 import connectToDatabase from "./lib/database.js";
 import cookieParser from "cookie-parser";
+import morgan from "morgan";
 
 const app = express();
 
@@ -15,6 +16,7 @@ dotenv.config();
 const port = process.env.PORT || 5000;
 
 //using middleware
+app.use(morgan("dev"));
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
