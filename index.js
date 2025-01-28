@@ -15,7 +15,7 @@ dotenv.config();
 
 const port = process.env.PORT || 5000;
 
-//using middleware
+//using middleware is healty for us
 app.use(morgan("dev"));
 app.use(
   cors({
